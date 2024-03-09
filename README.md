@@ -13,5 +13,5 @@ Follow the link and type away! Click the install button to install it as an exec
 
 Feel free to fork the project or create a PR.
 
-Check out the package.json for useful script to get the app up and running!
+Check out the package.json for useful scripts to get the app up and running!
 
