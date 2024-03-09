@@ -25,7 +25,7 @@ module.exports = () => {
       // Injects our custom service worker
       new InjectManifest({
         swSrc: './src-sw.js',
-        swDest: 'src-sw.js',
+        swDest: 'service-worker.js',
       }),
 
       new MiniCssExtractPlugin(),
@@ -53,16 +53,19 @@ module.exports = () => {
     ],
 
     module: {
-      // CSS loaders
       rules: [
         {
           test: /\.css$/i,
-          use: ["style-loader", "css-loader"],
+          use: [MiniCssExtractPlugin.loader, "css-loader"],
+        },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: 'asset/resource',
         },
         {
           test: /\.m?js$/,
-          exclude: /node_modules/,
-          // Babel-loader -> in order to use ES6
+          exclude: /(node_modules|bower_components)/,
+          
           use: {
             loader: "babel-loader",
             options: {
